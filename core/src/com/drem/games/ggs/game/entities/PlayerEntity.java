@@ -51,9 +51,7 @@ public class PlayerEntity extends GameEntity {
 //        shapeRenderer.begin();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         // All drawing needs to be here
-        for (int i = 0, j = shapex.length - 1; i < shapex.length; j = i++) {
-            shapeRenderer.line(shapex[i], shapey[i], shapex[j], shapey[j]);
-        }
+
         shapeRenderer.end();
     }
 }
