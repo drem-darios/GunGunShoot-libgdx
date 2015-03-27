@@ -13,16 +13,16 @@ import com.drem.games.ggs.game.manager.GameStateManager;
 /**
  * Created by drem on 3/23/15.
  */
-public class MainMenuState extends GameState {
+public class SinglePlayerMenuState extends GameState {
 
     private SpriteBatch sb;
     private BitmapFont titleFont;
     private BitmapFont font;
-    private final String title = "Gun Gun Shoot"; // Get this from properties
+    private final String title = "Difficulty"; // Get this from properties
     private int currentItem;
     private String[] menuItems;
 
-    public MainMenuState(GameStateManager gsm) {
+    public SinglePlayerMenuState(GameStateManager gsm) {
         super(gsm);
     }
 
@@ -34,18 +34,16 @@ public class MainMenuState extends GameState {
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 
         parameter.size = 56;
-        parameter.color = Color.WHITE;
-        parameter.borderColor = Color.RED;
+        parameter.color = Color.RED;
         titleFont = gen.generateFont(parameter);
 
+        parameter.color = Color.WHITE;
         parameter.size = 36;
-        parameter.borderColor = Color.RED;
         font = gen.generateFont(parameter);
 
-        menuItems = new String[]{"Single Player", "Multi-Player", "Exit"};
+        menuItems = new String[]{"1.Simple Computer", "2.Advanced Computer", "3.Super Computer", "Main Menu"};
         gen.dispose();
 
-//        Jukebox.playMusic(name);
     }
 
     @Override
@@ -61,7 +59,7 @@ public class MainMenuState extends GameState {
         // get size of title to center
         float width = titleFont.getBounds(title).width;
         // draw title
-        titleFont.draw(sb, title, (Application.WIDTH - width )/ 2, 300);
+        titleFont.draw(sb, title, (Application.WIDTH - width) / 2, 300);
 
 
         // draw menu
@@ -104,10 +102,13 @@ public class MainMenuState extends GameState {
             gameStateManager.setState(GameStateManager.SINGLE_PLAYER_MENU);
         }
         if (currentItem == 1) {
-            gameStateManager.setState(GameStateManager.MULTIPLAYER_MENU);
+            // Advanced computer
         }
         if (currentItem == 2) {
-            Gdx.app.exit();
+            // Super computer
+        }
+        if (currentItem == 3) {
+            gameStateManager.setState(GameStateManager.MAIN_MENU);
         }
     }
 

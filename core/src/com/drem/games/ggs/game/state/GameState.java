@@ -1,6 +1,6 @@
 package com.drem.games.ggs.game.state;
 
-import com.drem.games.ggs.game.state.manager.GameStateManager;
+import com.drem.games.ggs.game.manager.GameStateManager;
 
 /**
  * Created by drem on 3/23/15.

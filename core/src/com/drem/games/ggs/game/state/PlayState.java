@@ -2,8 +2,7 @@ package com.drem.games.ggs.game.state;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.drem.games.ggs.game.entities.PlayerEntity;
-import com.drem.games.ggs.game.state.manager.GameStateManager;
-import com.drem.games.ggs.player.Player;
+import com.drem.games.ggs.game.manager.GameStateManager;
 
 /**
  * Created by drem on 3/23/15.

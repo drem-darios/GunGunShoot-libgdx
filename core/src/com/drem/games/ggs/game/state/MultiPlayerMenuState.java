@@ -13,16 +13,16 @@ import com.drem.games.ggs.game.manager.GameStateManager;
 /**
  * Created by drem on 3/23/15.
  */
-public class MainMenuState extends GameState {
+public class MultiPlayerMenuState extends GameState {
 
     private SpriteBatch sb;
     private BitmapFont titleFont;
     private BitmapFont font;
-    private final String title = "Gun Gun Shoot"; // Get this from properties
+    private final String title = "Select Option"; // Get this from properties
     private int currentItem;
     private String[] menuItems;
 
-    public MainMenuState(GameStateManager gsm) {
+    public MultiPlayerMenuState(GameStateManager gsm) {
         super(gsm);
     }
 
@@ -34,15 +34,14 @@ public class MainMenuState extends GameState {
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 
         parameter.size = 56;
-        parameter.color = Color.WHITE;
-        parameter.borderColor = Color.RED;
+        parameter.color = Color.GREEN;
         titleFont = gen.generateFont(parameter);
 
+        parameter.color = Color.WHITE;
         parameter.size = 36;
-        parameter.borderColor = Color.RED;
         font = gen.generateFont(parameter);
 
-        menuItems = new String[]{"Single Player", "Multi-Player", "Exit"};
+        menuItems = new String[]{"Join Game", "Host Game", "Main Menu"};
         gen.dispose();
 
 //        Jukebox.playMusic(name);
@@ -101,13 +100,13 @@ public class MainMenuState extends GameState {
 
     private void select() {
         if (currentItem == 0) {
-            gameStateManager.setState(GameStateManager.SINGLE_PLAYER_MENU);
+            // Join Game
         }
         if (currentItem == 1) {
-            gameStateManager.setState(GameStateManager.MULTIPLAYER_MENU);
+            // Host Game
         }
         if (currentItem == 2) {
-            Gdx.app.exit();
+            gameStateManager.setState(GameStateManager.MAIN_MENU);
         }
     }
 

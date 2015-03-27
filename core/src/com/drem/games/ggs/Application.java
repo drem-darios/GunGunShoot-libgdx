@@ -4,7 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.drem.games.ggs.game.state.manager.GameStateManager;
+import com.drem.games.ggs.game.manager.GameStateManager;
 
 public class Application extends ApplicationAdapter {
 	public static OrthographicCamera camera;
@@ -21,6 +21,11 @@ public class Application extends ApplicationAdapter {
 		camera = new OrthographicCamera(WIDTH, HEIGHT);
 		camera.translate(WIDTH / 2, HEIGHT / 2);
 		camera.update();
+
+//		Jukebox.loadSound(path, name);
+//		Jukebox.loadMusic(path, name);
+
+
 
 		gameStateManager = new GameStateManager();
 		gameStateManager.setState(GameStateManager.MAIN_MENU);
