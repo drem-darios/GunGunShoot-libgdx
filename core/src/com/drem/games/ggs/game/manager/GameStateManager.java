@@ -44,6 +44,10 @@ public class GameStateManager {
         }
     }
 
+    public void setState(GameState state) {
+        gameState = state;
+    }
+
     public void update(float dt) {
         gameState.update(dt);
     }

@@ -22,13 +22,21 @@ public class Application extends ApplicationAdapter {
 		camera.translate(WIDTH / 2, HEIGHT / 2);
 		camera.update();
 
-//		Jukebox.loadSound(path, name);
+		Jukebox.loadSound("sounds/block.mp3", "block");
+		Jukebox.loadSound("sounds/bullet_hit.mp3", "hit");
+		Jukebox.loadSound("sounds/crack.mp3", "crack");
+		Jukebox.loadSound("sounds/gasp.mp3", "gasp");
+		Jukebox.loadSound("sounds/womp_womp.mp3", "womp");
+		Jukebox.loadSound("sounds/pew_pew.mp3", "pew_pew");
+		Jukebox.loadSound("sounds/reload.mp3", "reload");
+		Jukebox.loadSound("sounds/scared.mp3", "scared");
+		Jukebox.loadSound("sounds/spit.mp3", "spit");
 //		Jukebox.loadMusic(path, name);
 
 
 
 		gameStateManager = new GameStateManager();
-		gameStateManager.setState(GameStateManager.MAIN_MENU);
+		gameStateManager.setState(GameStateManager.SINGLE_PLAYER_MENU);
 	}
 
 	@Override

@@ -21,4 +21,9 @@ public abstract class Weapon implements IWeapon, Comparable<IWeapon> {
 			return 0;
 		}
 	}
+
+	@Override
+	public String getName() {
+		return this.getClass().getSimpleName();
+	}
 }

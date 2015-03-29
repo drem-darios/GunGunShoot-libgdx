@@ -81,6 +81,12 @@ public class MultiPlayerMenuState extends GameState {
     @Override
     public void handleInput() {
 
+        // TODO: Check for mouse input
+        // TODO: Get mouse input location
+        // TODO: Check if it collides with text
+        // TODO: If so, set the text color
+        // TODO: If action is pressed on text, go to next state
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             if (currentItem > 0) {
                 currentItem --;

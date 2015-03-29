@@ -1,23 +1,21 @@
 package com.drem.games.ggs.game;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-import com.drem.games.ggs.api.IMenu;
 import com.drem.games.ggs.api.IPlayerAction;
-import com.drem.games.ggs.game.menu.GameEndMenu;
 import com.drem.games.ggs.player.ComputerPlayer;
 import com.drem.games.ggs.player.Player;
 import com.drem.games.ggs.player.PlayerOutcome;
+import com.drem.games.ggs.player.action.ActionName;
 import com.drem.games.ggs.player.action.PlayerActionFactory;
 import com.drem.games.ggs.weapon.WeaponFactory;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /**
  * @author drem
  */
 public class SinglePlayerGame extends AbstractGame {
 
-	private IMenu gameEndMenu = new GameEndMenu();
 	private Scanner inputScanner;
 	public SinglePlayerGame(Player player1, ComputerPlayer player2) {
 		super(player1, player2);
@@ -62,14 +60,14 @@ public class SinglePlayerGame extends AbstractGame {
 					continue;
 				}
 				
-				IPlayerAction playerAction = PlayerActionFactory.getPlayerAction(choice-1);
+				IPlayerAction playerAction = PlayerActionFactory.getPlayerAction(ActionName.RELOAD);
 				IPlayerAction computerAction = ((ComputerPlayer) player2).makeMove();
 				
 				System.out.print("Player1: ");
 				// Apply the action
-				PlayerOutcome playerOutcome = playerAction.doAction(player1, player2, computerAction);
+				PlayerOutcome playerOutcome = playerAction.getOutcome(player1, player2, computerAction);
 				System.out.print("Computer: ");
-				PlayerOutcome computerOutcome = computerAction.doAction(player2, player1, playerAction);
+				PlayerOutcome computerOutcome = computerAction.getOutcome(player2, player1, playerAction);
 				
 				updateGameState(playerOutcome, computerOutcome);
 
@@ -82,7 +80,6 @@ public class SinglePlayerGame extends AbstractGame {
 			play();
 		}
 
-		gameEndMenu.openMenu();
 	}
 
 	@Override
@@ -104,19 +101,17 @@ public class SinglePlayerGame extends AbstractGame {
 
 	private void declareDraw() {
 		System.out.println("Violence solves nothing! Everyone dies. It's a draw.");
-		gameEndMenu.openMenu();
 	}
 
 	private void declareWinner(Player winner) {
 		System.out.println(winner.getClass().getSimpleName()
 				+ " has won the game!");
-		gameEndMenu.openMenu();
 	}
 
 	private void printPlayer(Player player) {
 		System.out.println("%`%`%`%`%`%`%`%`%`%");
 		System.out.println("Bullets: " + player.getBulletCount());
-		System.out.println("Shield: " + Math.abs(player.getShieldStrength()));
+		System.out.println("Shield: " + player.getShieldStrength());
 		if (player.hasWeapon()) {
 			System.out.println("Gun: " + WeaponFactory.getWeapon(player.getBulletCount())
 					.getClass().getSimpleName());

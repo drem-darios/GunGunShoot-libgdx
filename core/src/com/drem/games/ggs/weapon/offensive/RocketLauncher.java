@@ -41,6 +41,5 @@ public class RocketLauncher extends Weapon {
 			return false;
 		return true;
 	}
-	
-	
+
 }

@@ -5,21 +5,23 @@ import java.util.Map;
 
 import com.drem.games.ggs.api.IPlayerAction;
 
+import javax.swing.Action;
+
 /**
  * @author drem
  */
 public class PlayerActionFactory {
 	
-	private static Map<Integer, IPlayerAction> actions; // TODO: Inject values here!!!
+	private static Map<ActionName, IPlayerAction> actions; // TODO: Inject values here!!!
 
 	static {
-		actions = new HashMap<Integer, IPlayerAction>();
-		actions.put(0, new BlockAction());
-		actions.put(1, new ShootAction());
-		actions.put(2, new ReloadAction());
+		actions = new HashMap<ActionName, IPlayerAction>();
+		actions.put(ActionName.BLOCK, new BlockAction());
+		actions.put(ActionName.SHOOT, new ShootAction());
+		actions.put(ActionName.RELOAD, new ReloadAction());
 	}
 
-	public static IPlayerAction getPlayerAction(Integer action) {
+	public static IPlayerAction getPlayerAction(ActionName action) {
 		return actions.get(action);
 	}
 }

@@ -1,5 +1,7 @@
 package com.drem.games.ggs.player.action;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.drem.games.ggs.Jukebox;
 import com.drem.games.ggs.api.IPlayerAction;
 import com.drem.games.ggs.api.IWeapon;
 import com.drem.games.ggs.player.Player;
@@ -14,8 +16,8 @@ public class ShootAction implements IPlayerAction {
 	private static final long serialVersionUID = -7203015274842062139L;
 	
 	@Override
-	public PlayerOutcome doAction(Player player1, Player player2, IPlayerAction player2Action) {
-		
+	public PlayerOutcome getOutcome(Player player1, Player player2, IPlayerAction player2Action) {
+
 		if (player1.hasWeapon()) {
 			if (player2.hasWeapon() && player2Action.getActionName() == ActionName.SHOOT) {
 				IWeapon pWeapon = WeaponFactory.getWeapon(player1
@@ -24,33 +26,40 @@ public class ShootAction implements IPlayerAction {
 						.getBulletCount());
 				int result = pWeapon.compareTo(cWeapon);
 				if (result == 0) {
-					System.out.println("You pulled out the same gun as your opponent!");
 					return PlayerOutcome.DEAD;
 				} else if (result == 1) {
-					player1.useBullet();
-					System.out.println("Pew! Pew! You have "
-							+ player1.getBulletCount() + " bullets left!");
+					doAction(player1);
 					return PlayerOutcome.OK;
 				} else {
-					System.out.println("Your opponent's weapon is stronger!");
 					return PlayerOutcome.DEAD;
 				}
 			} else {
-				player1.useBullet();
-				System.out.println("Pew! Pew! You have "
-						+ player1.getBulletCount() + " bullets left!");
+				doAction(player1);
 				return PlayerOutcome.OK;
 			}
 		} else {
 			if (player2.hasWeapon() && player2Action.getActionName() == ActionName.SHOOT) {
-				System.out.println("Oh no! You dead!");
 				return PlayerOutcome.DEAD;
 			}
 
-			System.out
-					.println("*Ptooey* You spit at your opponent. Try getting some bullets.");
+			doAction(player1);
 			return PlayerOutcome.OK;
 		}
+	}
+
+	@Override
+	public void doAction(Player player) {
+		if (player.hasWeapon()) {
+			Jukebox.playSound("pew_pew");
+			player.useBullet();
+		} else {
+			Jukebox.playSound("spit");
+		}
+	}
+
+	@Override
+	public Texture getTexture() {
+		return new Texture("textures/shoot.png");
 	}
 
 	@Override

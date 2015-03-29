@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.drem.games.ggs.Application;
 import com.drem.games.ggs.game.manager.GameStateManager;
+import com.drem.games.ggs.player.ComputerPlayer;
 
 /**
  * Created by drem on 3/23/15.
@@ -99,7 +100,7 @@ public class SinglePlayerMenuState extends GameState {
 
     private void select() {
         if (currentItem == 0) {
-            gameStateManager.setState(GameStateManager.SINGLE_PLAYER_MENU);
+            gameStateManager.setState(new SinglePlayerGameState(gameStateManager, new ComputerPlayer()));
         }
         if (currentItem == 1) {
             // Advanced computer

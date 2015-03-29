@@ -23,4 +23,9 @@ public class BasicShield extends ShieldImpl {
 	public int getStrength() {
 		return strength;
 	}
+
+	@Override
+	public String getName() {
+		return this.getClass().getSimpleName();
+	}
 }

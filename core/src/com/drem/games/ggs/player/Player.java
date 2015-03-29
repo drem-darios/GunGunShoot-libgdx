@@ -21,7 +21,7 @@ public class Player {
 	}
 	
 	public int getShieldStrength() {
-		return shield.getStrength();
+		return Math.abs(shield.getStrength());
 	}
 	
 	public void addBullet() {

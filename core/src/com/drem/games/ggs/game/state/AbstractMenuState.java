@@ -9,4 +9,12 @@ public abstract class AbstractMenuState extends GameState {
     protected AbstractMenuState(GameStateManager gsm) {
         super(gsm);
     }
+
+    public void printMenu() {
+        printHeader();
+        printOptions();
+    }
+
+    public abstract void printHeader();
+    public abstract void printOptions();
 }
