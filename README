@@ -1,3 +1,5 @@
 # GunGunShoot-libgdx
 LibGDX Project for Gun Gun Shoot
 
+To run the desktop version of the game use this command:
+gradlew desktop:run
